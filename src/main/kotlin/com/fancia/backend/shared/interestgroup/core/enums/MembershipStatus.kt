@@ -1,4 +1,4 @@
-package com.fancia.backend.shared.interestgroup.core.enum
+package com.fancia.backend.shared.interestgroup.core.enums
 
 enum class MembershipStatus {
     ACCEPTED,
