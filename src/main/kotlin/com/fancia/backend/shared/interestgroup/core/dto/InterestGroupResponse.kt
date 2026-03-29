@@ -7,7 +7,7 @@ data class InterestGroupResponse(
     val id: UUID? = null,
     var name: String = "",
     var description: String = "",
-    var createdBy: UUID,
+    var createdBy: UUID? = null,
     var createdAt: LocalDateTime? = null,
     var tags: Set<String>
 )
