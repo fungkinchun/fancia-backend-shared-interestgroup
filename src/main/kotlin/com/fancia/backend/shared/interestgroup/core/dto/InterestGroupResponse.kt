@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 data class InterestGroupResponse(
-    val id: UUID? = null,
+    var id: UUID? = null,
     var name: String = "",
     var description: String = "",
     var createdBy: UUID? = null,

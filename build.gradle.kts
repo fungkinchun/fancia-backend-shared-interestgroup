@@ -17,12 +17,16 @@ java {
     }
 }
 
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll("-Xjsr305=strict", "-Xannotation-default-target=param-property")
+    }
+}
+
 fun RepositoryHandler.codeArtifactRepo(repoName: String) {
     maven {
-        val baseUrl = System.getenv("ARTIFACT_REPO_URL")
-            ?: project.findProperty("ARTIFACT_REPO_URL") as String?
-            ?: error("ARTIFACT_REPO_URL must be provided via property or environment variable")
-
+        val baseUrl = System.getenv("ARTIFACT_REPO_URL") ?: project.findProperty("ARTIFACT_REPO_URL") as String?
+        ?: error("ARTIFACT_REPO_URL must be provided via property or environment variable")
         url = uri("$baseUrl/$repoName/")
         credentials {
             username = System.getenv("ARTIFACT_REPO_USER") ?: (project.findProperty("ARTIFACT_REPO_USER") as String?)
@@ -35,6 +39,7 @@ fun RepositoryHandler.codeArtifactRepo(repoName: String) {
 repositories {
     mavenCentral()
     maven { url = uri("https://repo.spring.io/snapshot") }
+    codeArtifactRepo("fancia-backend-shared-common")
 }
 
 dependencies {
@@ -46,15 +51,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.apache.commons:commons-lang3:3.18.0")
+    implementation("com.fancia.backend.shared:common:0.0.1-SNAPSHOT")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-
-kotlin {
-    compilerOptions {
-        freeCompilerArgs.addAll("-Xjsr305=strict", "-Xannotation-default-target=param-property")
-    }
 }
 
 tasks.withType<Test> {
@@ -85,7 +85,7 @@ publishing {
             val region = System.getenv("AWS_REGION")
             val projectName = System.getenv("PROJECT_NAME")
             val repoName = System.getenv("REPO_NAME")
-            url = uri("https://$domain-$account.d.codeartifact.$region.amazonaws.com/maven/$projectName-backend-$repoName/")
+            url = uri("https://$domain-$account.d.codeartifact.$region.amazonaws.com/maven/$projectName-backend-$repoName")
             credentials {
                 username = "aws"
                 password = System.getenv("ARTIFACT_REPO_PASSWORD")
