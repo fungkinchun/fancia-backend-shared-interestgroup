@@ -85,7 +85,8 @@ publishing {
             val region = System.getenv("AWS_REGION")
             val projectName = System.getenv("PROJECT_NAME")
             val repoName = System.getenv("REPO_NAME")
-            url = uri("https://$domain-$account.d.codeartifact.$region.amazonaws.com/maven/$projectName-backend-$repoName")
+            url =
+                uri("https://$domain-$account.d.codeartifact.$region.amazonaws.com/maven/$projectName-backend-$repoName")
             credentials {
                 username = "aws"
                 password = System.getenv("ARTIFACT_REPO_PASSWORD")
