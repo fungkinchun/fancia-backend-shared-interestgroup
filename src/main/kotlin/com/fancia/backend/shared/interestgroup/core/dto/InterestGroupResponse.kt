@@ -7,6 +7,7 @@ import java.util.*
 data class InterestGroupResponse(
     var id: UUID? = null,
     var name: String = "",
+    var slug: String = "",
     var description: String = "",
     var createdBy: UUID? = null,
     var createdAt: LocalDateTime? = null,
