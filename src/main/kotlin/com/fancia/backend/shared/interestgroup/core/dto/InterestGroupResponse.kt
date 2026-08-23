@@ -12,5 +12,6 @@ data class InterestGroupResponse(
     var createdBy: UUID? = null,
     var createdAt: LocalDateTime? = null,
     var tags: Set<UUID> = emptySet(),
+    var memberCount: Long = 0,
     var links: List<LinkResponse> = emptyList(),
 )
