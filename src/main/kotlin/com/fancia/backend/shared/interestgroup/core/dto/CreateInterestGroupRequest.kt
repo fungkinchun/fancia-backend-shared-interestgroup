@@ -1,5 +1,6 @@
 package com.fancia.backend.shared.interestgroup.core.dto
 
+import com.fancia.backend.shared.common.core.enums.ResourceVisibility
 import com.fancia.backend.shared.common.social.core.dto.LinkItem
 import com.fancia.backend.shared.common.tag.core.dto.TagItemRequest
 import jakarta.validation.Valid
@@ -16,4 +17,5 @@ data class CreateInterestGroupRequest(
     val tags: Set<@Valid TagItemRequest>,
     @field:Valid
     val links: List<LinkItem> = emptyList(),
+    val visibility: ResourceVisibility? = ResourceVisibility.PUBLIC,
 )
