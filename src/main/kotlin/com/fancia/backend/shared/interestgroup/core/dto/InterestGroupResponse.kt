@@ -14,4 +14,5 @@ data class InterestGroupResponse(
     var tags: Set<UUID> = emptySet(),
     var memberCount: Long = 0,
     var links: List<LinkResponse> = emptyList(),
+    var savedByCurrentUser: Boolean? = null,
 )
