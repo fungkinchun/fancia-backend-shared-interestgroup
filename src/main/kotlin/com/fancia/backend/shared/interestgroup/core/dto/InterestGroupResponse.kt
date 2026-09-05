@@ -16,5 +16,6 @@ data class InterestGroupResponse(
     var memberCount: Long = 0,
     var links: List<LinkResponse> = emptyList(),
     var visibility: ResourceVisibility = ResourceVisibility.PUBLIC,
+    var inviteToken: String? = null,
     var savedByCurrentUser: Boolean? = null,
 )
